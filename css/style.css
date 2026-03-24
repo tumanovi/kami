@@ -48,7 +48,21 @@
             cursor: pointer;
             background: transparent;
         }
+.online__button {
+            background: #fff;
+            border: 1.5px solid #9b9b7a;
+            color: #505037;
+            margin: 34px 0;
+        }
 
+        .online__button:hover {
+            background: #9b9b7a;
+            color: #1e1e1c;
+        }
+        .on__button {
+            width: 150px;
+            margin: 0 auto;
+        }
         .button--primary {
             background-color: #9b9b7a;
             color: #fff;
@@ -270,6 +284,8 @@
         .format-card__emoji {
             font-size: 48px;
             margin-bottom: 24px;
+            margin-left: 24px;
+    
         }
 
         .format-card__title {
@@ -357,7 +373,7 @@
         }
 
         .edu-item--full {
-            grid-column: span 2;
+            grid-column: span 1;
         }
 
         /* ========== GALLERY ========== */
@@ -501,6 +517,12 @@
             .education__grid { grid-template-columns: 1fr; }
             .gallery__grid { grid-template-columns: 1fr; }
             .header__nav { display: none; } /* упрощение для мобильного, можно заменить на бургер */
+            .sharing__subtitle {
+                padding: 0 20px;
+}
+.sharing__text {
+   padding: 0 20px; 
+}
         }
 
         @media (max-width: 480px) {
@@ -526,6 +548,7 @@
 
 .sharing__subtitle {
     margin-top: 80px;
+    max-width: 800px;
 }
 
 .sharing__imgrow {
@@ -548,6 +571,12 @@
 .sharing-button {
     margin: 0 auto;
     margin-bottom: 198px;
+}
+.sharing__title {
+    margin-top: 34px;
+}
+.sharing__h3 {
+    margin: 24px 0;
 }
 
         /***************************************************слайдер шеринг *************************/

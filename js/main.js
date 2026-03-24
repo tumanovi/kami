@@ -1,13 +1,13 @@
 /*****************************************************слайдер шеринг ****************************** */
 
 document.addEventListener('DOMContentLoaded', function() {
-    function initMobileSlider() {
+    function initMobileSliderForBlock(block) {
         // Только для мобильных
         if (window.innerWidth > 670) return;
         
-        const sliderContainer = document.querySelector('.sharing__slider');
-        const dotsContainer = document.querySelector('.sharing-dots');
-        const originalImages = document.querySelectorAll('.sharing__content a[data-fancybox]');
+        const sliderContainer = block.querySelector('.sharing__slider');
+        const dotsContainer = block.querySelector('.sharing-dots');
+        const originalImages = block.querySelectorAll('.sharing__content a[data-fancybox]');
         
         if (!sliderContainer || !dotsContainer || originalImages.length === 0) return;
         
@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', function() {
             dotsContainer.appendChild(dot);
         });
         
-        const slides = document.querySelectorAll('.sharing__slide');
-        const dots = document.querySelectorAll('.dot');
+        const slides = block.querySelectorAll('.sharing__slide');
+        const dots = block.querySelectorAll('.sharing-dots .dot');
         let current = 0;
         
         function goToSlide(index) {
@@ -91,12 +91,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 goToSlide(current);
             }
         });
-        
     }
     
-    // Запускаем при загрузке и изменении размера
-    initMobileSlider();
-    window.addEventListener('resize', initMobileSlider);
+    // Находим все блоки .sharing и инициализируем каждый
+    const sharingBlocks = document.querySelectorAll('.sharing');
+    sharingBlocks.forEach(block => {
+        initMobileSliderForBlock(block);
+    });
+    
+    // Обновляем при изменении размера окна
+    window.addEventListener('resize', function() {
+        sharingBlocks.forEach(block => {
+            // Очищаем и переинициализируем
+            const sliderContainer = block.querySelector('.sharing__slider');
+            if (sliderContainer) {
+                sliderContainer.innerHTML = '';
+                sliderContainer.style.transform = '';
+            }
+            const dotsContainer = block.querySelector('.sharing-dots');
+            if (dotsContainer) {
+                dotsContainer.innerHTML = '';
+            }
+            initMobileSliderForBlock(block);
+        });
+    });
 });
 /************************************************************************************************** */
  // ***************************************************************************************fancybox
