@@ -1,159 +1,174 @@
 /*****************************************************слайдер шеринг ****************************** */
 document.addEventListener('DOMContentLoaded', function() {
-    function initMobileSliderForBlock(block) {
-        // Только для мобильных
+    
+    // Функция для создания слайдера в блоке
+    function createSlider(block) {
+        // Проверяем ширину экрана
         if (window.innerWidth > 670) return;
         
-        const sliderContainer = block.querySelector('.sharing__slider');
+        const sliderWrapper = block.querySelector('.sharing__slider-wrapper');
+        const slider = block.querySelector('.sharing__slider');
         const dotsContainer = block.querySelector('.sharing-dots');
+        
+        if (!sliderWrapper || !slider || !dotsContainer) return;
+        
+        // Получаем оригинальные изображения из .sharing__content
         const originalImages = block.querySelectorAll('.sharing__content a[data-fancybox]');
+        if (originalImages.length === 0) return;
         
-        if (!sliderContainer || !dotsContainer || originalImages.length === 0) return;
-        
-        // Очищаем и создаем слайды
-        sliderContainer.innerHTML = '';
+        // Очищаем слайдер и точки
+        slider.innerHTML = '';
         dotsContainer.innerHTML = '';
         
+        // Создаем слайды
         originalImages.forEach((imgLink, index) => {
-            // Слайд
             const slide = document.createElement('div');
             slide.className = 'sharing__slide';
             
-            const newLink = imgLink.cloneNode(true);
-            slide.appendChild(newLink);
-            sliderContainer.appendChild(slide);
+            // Клонируем ссылку с изображением
+            const clonedLink = imgLink.cloneNode(true);
             
-            // Точка
+            // Временно отключаем fancybox на слайдере
+            clonedLink.removeAttribute('data-fancybox');
+            clonedLink.style.pointerEvents = 'none';
+            
+            slide.appendChild(clonedLink);
+            slider.appendChild(slide);
+            
+            // Создаем точку
             const dot = document.createElement('button');
             dot.className = 'dot';
             if (index === 0) dot.classList.add('active');
-            
-            dot.addEventListener('click', () => {
+            dot.addEventListener('click', function(e) {
+                e.preventDefault();
                 goToSlide(index);
             });
-            
             dotsContainer.appendChild(dot);
         });
         
         const slides = block.querySelectorAll('.sharing__slide');
         const dots = block.querySelectorAll('.sharing-dots .dot');
-        let current = 0;
+        let currentIndex = 0;
         let startX = 0;
-        let currentTranslate = 0;
+        let startIndex = 0;
         let isDragging = false;
         let startTime = 0;
         
-        function goToSlide(index) {
+        // Функция перехода к слайду
+        function goToSlide(index, animate = true) {
             if (index < 0) index = slides.length - 1;
             if (index >= slides.length) index = 0;
             
-            current = index;
-            const translateValue = -current * 100;
-            sliderContainer.style.transform = `translateX(${translateValue}%)`;
+            currentIndex = index;
+            const translateX = -currentIndex * 100;
             
+            slider.style.transition = animate ? 'transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1)' : 'none';
+            slider.style.transform = `translateX(${translateX}%)`;
+            
+            // Обновляем точки
             dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === current);
+                dot.classList.toggle('active', i === currentIndex);
             });
         }
         
-        function getTranslateX() {
-            const transform = sliderContainer.style.transform;
-            if (!transform) return 0;
-            const match = transform.match(/translateX\(([-\d.]+)%\)/);
-            return match ? parseFloat(match[1]) : 0;
-        }
+        // Инициализация
+        goToSlide(0, false);
         
-        // Свайп с улучшенной обработкой для Safari
-        sliderContainer.addEventListener('touchstart', (e) => {
+        // Touch события
+        slider.addEventListener('touchstart', function(e) {
             startX = e.touches[0].clientX;
             startTime = Date.now();
+            startIndex = currentIndex;
             isDragging = true;
-            currentTranslate = getTranslateX();
-            sliderContainer.style.transition = 'none';
-            // Предотвращаем скролл страницы во время свайпа
-            e.preventDefault();
-        }, { passive: false });
+            slider.style.transition = 'none';
+        }, { passive: true });
         
-        sliderContainer.addEventListener('touchmove', (e) => {
+        slider.addEventListener('touchmove', function(e) {
             if (!isDragging) return;
             
             const currentX = e.touches[0].clientX;
             const diff = startX - currentX;
-            const movePercent = (diff / sliderContainer.offsetWidth) * 100;
-            let newTranslate = currentTranslate - movePercent;
+            const slideWidth = slider.offsetWidth / slides.length;
+            const percentMoved = (diff / slideWidth) * 100;
             
-            // Ограничиваем, чтобы не было overscroll
-            if (newTranslate > 0) newTranslate = newTranslate / 3; // резиновый эффект
-            if (newTranslate < -((slides.length - 1) * 100)) {
-                newTranslate = -((slides.length - 1) * 100) + (newTranslate + ((slides.length - 1) * 100)) / 3;
+            let newTranslate = -startIndex * 100 - percentMoved;
+            
+            // Ограничиваем overscroll
+            const maxTranslate = -((slides.length - 1) * 100);
+            if (newTranslate > 0) {
+                newTranslate = newTranslate * 0.3;
+            } else if (newTranslate < maxTranslate) {
+                newTranslate = maxTranslate + (newTranslate - maxTranslate) * 0.3;
             }
             
-            sliderContainer.style.transform = `translateX(${newTranslate}%)`;
-            e.preventDefault();
-        }, { passive: false });
+            slider.style.transform = `translateX(${newTranslate}%)`;
+        }, { passive: true });
         
-        sliderContainer.addEventListener('touchend', (e) => {
+        slider.addEventListener('touchend', function(e) {
             if (!isDragging) return;
-            
             isDragging = false;
-            sliderContainer.style.transition = 'transform 0.3s ease';
             
             const endX = e.changedTouches[0].clientX;
             const diff = startX - endX;
             const endTime = Date.now();
             const velocity = Math.abs(diff) / (endTime - startTime);
             
-            // Быстрый свайп (скорость > 0.3) или значительное смещение (> 20px)
-            if (velocity > 0.3 || Math.abs(diff) > 30) {
+            let newIndex = startIndex;
+            
+            // Определяем нужно ли перелистывать
+            if (Math.abs(diff) > 30 || velocity > 0.3) {
                 if (diff > 0) {
-                    goToSlide(current + 1);
+                    newIndex = startIndex + 1;
                 } else {
-                    goToSlide(current - 1);
+                    newIndex = startIndex - 1;
                 }
-            } else {
-                // Возвращаем на текущий слайд
-                goToSlide(current);
+            }
+            
+            goToSlide(newIndex, true);
+        });
+        
+        // Обработка touchcancel
+        slider.addEventListener('touchcancel', function() {
+            if (isDragging) {
+                isDragging = false;
+                goToSlide(startIndex, true);
             }
         });
-        
-        // Обработка touchcancel (например, при прерывании системой)
-        sliderContainer.addEventListener('touchcancel', (e) => {
-            if (!isDragging) return;
-            isDragging = false;
-            sliderContainer.style.transition = 'transform 0.3s ease';
-            goToSlide(current);
-        });
-        
-        // Инициализируем позицию первого слайда
-        goToSlide(0);
     }
     
-    // Находим все блоки .sharing и инициализируем каждый
+    // Инициализация всех блоков
     const sharingBlocks = document.querySelectorAll('.sharing');
-    sharingBlocks.forEach(block => {
-        initMobileSliderForBlock(block);
-    });
+    sharingBlocks.forEach(block => createSlider(block));
     
-    // Обновляем при изменении размера окна
-    let resizeTimer;
+    // Переинициализация при изменении размера окна
+    let resizeTimeout;
     window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
             sharingBlocks.forEach(block => {
-                // Очищаем и переинициализируем
-                const sliderContainer = block.querySelector('.sharing__slider');
-                if (sliderContainer) {
-                    sliderContainer.innerHTML = '';
-                    sliderContainer.style.transform = '';
-                }
-                const dotsContainer = block.querySelector('.sharing-dots');
-                if (dotsContainer) {
-                    dotsContainer.innerHTML = '';
-                }
-                initMobileSliderForBlock(block);
+                // Очищаем слайдер
+                const slider = block.querySelector('.sharing__slider');
+                const dots = block.querySelector('.sharing-dots');
+                if (slider) slider.innerHTML = '';
+                if (dots) dots.innerHTML = '';
+                // Пересоздаем
+                createSlider(block);
             });
         }, 250);
     });
+    
+    // Инициализация Fancybox (только для изображений вне слайдера)
+    if (typeof Fancybox !== 'undefined') {
+        Fancybox.bind('[data-fancybox="gallery"]', {
+            loop: true,
+            animationEffect: "zoom",
+            transitionEffect: "slide",
+            thumbs: {
+                autoStart: true
+            },
+            toolbar: "zoom|slideshow|thumbs|close"
+        });
+    }
 });
 /************************************************************************************************** 
  // ***************************************************************************************fancybox
