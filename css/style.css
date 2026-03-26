@@ -674,3 +674,12 @@
         display: block;
     }
 }
+/* Добавьте это правило для слайдера */
+.sharing__slider {
+    touch-action: pan-y pinch-zoom; /* Это ключевое свойство для Safari */
+}
+
+.sharing__slider-container {
+    touch-action: pan-y pinch-zoom;
+}
+}

@@ -20,6 +20,10 @@ document.addEventListener('DOMContentLoaded', function() {
             slide.className = 'sharing__slide';
             
             const newLink = imgLink.cloneNode(true);
+            // Временно отключаем fancybox на слайдах, чтобы не мешал свайпу
+            newLink.removeAttribute('data-fancybox');
+            newLink.style.pointerEvents = 'none';
+            
             slide.appendChild(newLink);
             sliderContainer.appendChild(slide);
             
@@ -28,7 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
             dot.className = 'dot';
             if (index === 0) dot.classList.add('active');
             
-            dot.addEventListener('click', () => {
+            dot.addEventListener('click', (e) => {
+                e.preventDefault();
                 goToSlide(index);
             });
             
@@ -39,16 +44,24 @@ document.addEventListener('DOMContentLoaded', function() {
         const dots = block.querySelectorAll('.sharing-dots .dot');
         let current = 0;
         let startX = 0;
-        let currentTranslate = 0;
+        let startIndex = 0; // Добавляем начальный индекс
         let isDragging = false;
         let startTime = 0;
         
-        function goToSlide(index) {
+        function goToSlide(index, animate = true) {
             if (index < 0) index = slides.length - 1;
             if (index >= slides.length) index = 0;
             
             current = index;
             const translateValue = -current * 100;
+            
+            // Устанавливаем анимацию если нужно
+            if (animate) {
+                sliderContainer.style.transition = 'transform 0.3s ease';
+            } else {
+                sliderContainer.style.transition = 'none';
+            }
+            
             sliderContainer.style.transform = `translateX(${translateValue}%)`;
             
             dots.forEach((dot, i) => {
@@ -56,23 +69,15 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
-        function getTranslateX() {
-            const transform = sliderContainer.style.transform;
-            if (!transform) return 0;
-            const match = transform.match(/translateX\(([-\d.]+)%\)/);
-            return match ? parseFloat(match[1]) : 0;
-        }
-        
         // Свайп с улучшенной обработкой для Safari
         sliderContainer.addEventListener('touchstart', (e) => {
             startX = e.touches[0].clientX;
             startTime = Date.now();
+            startIndex = current; // Запоминаем начальный индекс
             isDragging = true;
-            currentTranslate = getTranslateX();
             sliderContainer.style.transition = 'none';
-            // Предотвращаем скролл страницы во время свайпа
-            e.preventDefault();
-        }, { passive: false });
+            // НЕ вызываем preventDefault() здесь, чтобы не блокировать вертикальную прокрутку
+        }, { passive: true }); // Меняем на passive: true для лучшей производительности
         
         sliderContainer.addEventListener('touchmove', (e) => {
             if (!isDragging) return;
@@ -80,7 +85,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const currentX = e.touches[0].clientX;
             const diff = startX - currentX;
             const movePercent = (diff / sliderContainer.offsetWidth) * 100;
-            let newTranslate = currentTranslate - movePercent;
+            // Используем startIndex вместо currentTranslate
+            let newTranslate = -(startIndex * 100) - movePercent;
             
             // Ограничиваем, чтобы не было overscroll
             if (newTranslate > 0) newTranslate = newTranslate / 3; // резиновый эффект
@@ -89,8 +95,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             sliderContainer.style.transform = `translateX(${newTranslate}%)`;
-            e.preventDefault();
-        }, { passive: false });
+            // Не вызываем preventDefault() чтобы не блокировать вертикальную прокрутку
+        }, { passive: true });
         
         sliderContainer.addEventListener('touchend', (e) => {
             if (!isDragging) return;
@@ -103,29 +109,30 @@ document.addEventListener('DOMContentLoaded', function() {
             const endTime = Date.now();
             const velocity = Math.abs(diff) / (endTime - startTime);
             
-            // Быстрый свайп (скорость > 0.3) или значительное смещение (> 20px)
+            let newIndex = startIndex; // Используем startIndex
+            
+            // Быстрый свайп (скорость > 0.3) или значительное смещение (> 30px)
             if (velocity > 0.3 || Math.abs(diff) > 30) {
                 if (diff > 0) {
-                    goToSlide(current + 1);
+                    newIndex = startIndex + 1;
                 } else {
-                    goToSlide(current - 1);
+                    newIndex = startIndex - 1;
                 }
-            } else {
-                // Возвращаем на текущий слайд
-                goToSlide(current);
             }
+            
+            goToSlide(newIndex, true);
         });
         
-        // Обработка touchcancel (например, при прерывании системой)
+        // Обработка touchcancel (важно для Safari)
         sliderContainer.addEventListener('touchcancel', (e) => {
             if (!isDragging) return;
             isDragging = false;
             sliderContainer.style.transition = 'transform 0.3s ease';
-            goToSlide(current);
+            goToSlide(startIndex, true); // Возвращаемся к начальному индексу
         });
         
         // Инициализируем позицию первого слайда
-        goToSlide(0);
+        goToSlide(0, false);
     }
     
     // Находим все блоки .sharing и инициализируем каждый
