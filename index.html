@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/style.css">
     <title>Йога — творчество и философия жизни</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -185,44 +186,30 @@
 <a href="https://t.me/ohhkamila" class="button online__button">Подробнее</a></div>
                     </div>
 
-                    <!-- Слайдер для мобильных -->
-                    <div class="sharing__slider-container">
-                        <div class="sharing__slider">
-                            <!-- Слайды будут вставлены через JS -->
-                        </div>
-                        <div class="sharing-dots"></div>
+<!-- Для каждого блока отдельно -->
+<div class="sharing__slider-container swiper">
+    <div class="swiper-wrapper">
+        <!-- Слайды генерируются из .sharing__content, но можно вручную -->
+        <div class="swiper-slide">
+            <a href="/images/on1.png" data-fancybox="gallery">
+                <img src="/images/on1.png" alt="">
+            </a>
+        </div>
+        <div class="swiper-slide">
+            <a href="/images/on2.png" data-fancybox="gallery">
+                <img src="/images/on2.png" alt="">
+            </a>
+        </div>
+        <!-- остальные слайды -->
+    </div>
+    <!-- Навигация (необязательно) -->
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+</div>
 
-                    </div>
 
-                    <!-- Оригинальный контент (десктоп) -->
-                    <div class="sharing__content">
-                        <div class="sharing__imgrow">
-                           
-                        </div>
-                        <div class="sharing__imgrow">
-                            <a href="/images/on1.png" data-fancybox="gallery">
-                                <img src="/images/on1.png" alt="">
-                            </a>
-                            <a href="/images/on2.png" data-fancybox="gallery">
-                                <img src="/images/on2.png" alt="">
-                            </a>
-                            <a href="/images/on3.png" data-fancybox="gallery">
-                                <img src="/images/on3.png" alt="">
-                            </a>
-                        </div>
-                        <div class="sharing__imgrow">
-                            <a href="/images/on4.png" data-fancybox="gallery">
-                                <img class="sharing__img" src="/images/on4.png" alt="">
-                            </a>
-                            <a href="/images/on5.png" data-fancybox="gallery">
-                                <img src="/images/on5.png" alt="">
-                            </a>
-                            <a href="/images/on6.png" data-fancybox="gallery">
-                                <img src="/images/on6.png" alt="">
-                            </a>
-                        </div>
-                        
-                    </div>
+                  
                 </div>
             </div>
         </section>
@@ -248,42 +235,27 @@
                     <div class="on__button">
 <a href="https://t.me/ohhkamila" class="button online__button">Подробнее</a></div></div>
 
-                    <!-- Слайдер для мобильных -->
-                    <div class="sharing__slider-container">
-                        <div class="sharing__slider">
-                            <!-- Слайды будут вставлены через JS -->
-                        </div>
-                        <div class="sharing-dots"></div>
-
-                    </div>
-
-                    <!-- Оригинальный контент (десктоп) -->
-                    <div class="sharing__content">
-                        
-                        <div class="sharing__imgrow">
-                            <a href="/images/sharre1.jpg" data-fancybox="gallery">
-                                <img src="/images/sharre1.jpg" alt="">
-                            </a>
-                            <a href="/images/sharre2.jpg" data-fancybox="gallery">
-                                <img src="/images/sharre2.jpg" alt="">
-                            </a>
-                            <a href="/images/sharre3.jpg" data-fancybox="gallery">
-                                <img src="/images/sharre3.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="sharing__imgrow">
-                            <a href="/images/sharre4.jpg" data-fancybox="gallery">
-                                <img class="sharing__img" src="/images/sharre4.jpg" alt="">
-                            </a>
-                            <a href="/images/sharre5.jpg" data-fancybox="gallery">
-                                <img src="/images/sharre5.jpg" alt="">
-                            </a>
-                            <a href="/images/sharre6.jpg" data-fancybox="gallery">
-                                <img src="/images/sharre6.jpg" alt="">
-                            </a>
-                        </div>
-                        
-                    </div>
+                   <!-- Для каждого блока отдельно -->
+<div class="sharing__slider-container swiper">
+    <div class="swiper-wrapper">
+        <!-- Слайды генерируются из .sharing__content, но можно вручную -->
+        <div class="swiper-slide">
+            <a href="/images/on1.png" data-fancybox="gallery">
+                <img src="/images/on1.png" alt="">
+            </a>
+        </div>
+        <div class="swiper-slide">
+            <a href="/images/on2.png" data-fancybox="gallery">
+                <img src="/images/on2.png" alt="">
+            </a>
+        </div>
+        <!-- остальные слайды -->
+    </div>
+    <!-- Навигация (необязательно) -->
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+</div>
                 </div>
             </div>
         </section>
@@ -325,7 +297,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.min.js"></script>
-<script src="js/mixitup.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="js/main.js"></script>
 
 </html>

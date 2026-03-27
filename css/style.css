@@ -582,104 +582,35 @@
         /***************************************************слайдер шеринг *************************/
 
 /* Слайдер для мобильных */
-.sharing__slider-container {
-    display: none;
+.sharing__slider-container.swiper {
     width: 100%;
-    position: relative;
     overflow: hidden;
-    touch-action: pan-y;
-    margin-bottom: 30px;
+    touch-action: pan-y pinch-zoom;   /* для Safari — разрешаем только вертикальный скролл */
 }
 
-.sharing__slider {
-    display: flex;
-    transition: transform 0.3s ease;
-    cursor: grab;
-}
-
-.sharing__slider:active {
-    cursor: grabbing;
-}
-
-.sharing__slide {
-    flex: 0 0 100%;
-    min-width: 100%;
-    padding: 0 10px;
-    box-sizing: border-box;
-}
-
-.sharing__slide a {
+.swiper-slide a {
     display: block;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease;
 }
 
-.sharing__slide a:active {
-    transform: scale(0.98);
-}
-
-.sharing__slide img {
+.swiper-slide img {
     width: 100%;
-    object-fit: cover;
+    height: auto;
     display: block;
+    pointer-events: none; /* чтобы fancybox не перехватывал свайп */
 }
 
-/* Точки */
-.sharing-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 20px;
-}
-
-.sharing-dots .dot {
+/* Стили для точек (если используете пагинацию) */
+.swiper-pagination-bullet {
     width: 8px;
     height: 8px;
-    border-radius: 50%;
     background: #ddd;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    transition: background 0.3s ease;
+    opacity: 1;
 }
 
-.sharing-dots .dot.active {
-    background: #333;
-}
-
-/* Показываем слайдер только на мобильных до 670px */
-@media (max-width: 670px) {
-    .sharing__slider-container {
-        display: block;
-    }
-    
-    .sharing__content {
-        display: none;
-    }
-    
-    .swipe-hint {
-        display: block;
-    }
-}
-
-/* Для экранов больше 670px показываем оригинальный контент */
-@media (min-width: 671px) {
-    .sharing__slider-container {
-        display: none;
-    }
-    
-    .sharing__content {
-        display: block;
-    }
-}
-/* Добавьте это правило для слайдера */
-.sharing__slider {
-    touch-action: pan-y pinch-zoom; /* Это ключевое свойство для Safari */
-}
-
-.sharing__slider-container {
-    touch-action: pan-y pinch-zoom;
-}
+.swiper-pagination-bullet-active {
+    background: #9b9b7a;
+    width: 20px;
+    border-radius: 4px;
 }
