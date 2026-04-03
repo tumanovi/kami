@@ -56,16 +56,12 @@ document.addEventListener('DOMContentLoaded', function() {
             thumbs: { autoStart: true },
             toolbar: "zoom|slideshow|thumbs|close"
         });
+         Fancybox.bind('[data-fancybox="gallery2"]', {
+            loop: true,
+            animationEffect: "zoom",
+            transitionEffect: "slide",
+            thumbs: { autoStart: true },
+            toolbar: "zoom|slideshow|thumbs|close"
+        });
     }
 });
-/************************************************************************************************** 
- // ***************************************************************************************fancybox
-        Fancybox.bind('[data-fancybox="gallery"]', {
-  loop: true,              // Бесконечный цикл в галерее
-  animationEffect: "zoom", // Эффект при открытии
-  transitionEffect: "slide", // Эффект переключения
-  thumbs: {
-    autoStart: true       // Показывать миниатюры сразу
-  },
-  toolbar: "zoom|slideshow|thumbs|close" // Кнопки в панели
-}); */

@@ -583,9 +583,15 @@
 
 /* Слайдер для мобильных */
 .sharing__slider-container.swiper {
-    width: 100%;
+    width: 50%;
+   
     overflow: hidden;
     touch-action: pan-y pinch-zoom;   /* для Safari — разрешаем только вертикальный скролл */
+}
+@media (max-width: 800px) {
+.sharing__slider-container.swiper {
+    width: 100%;
+}
 }
 
 .swiper-slide a {
@@ -614,3 +620,4 @@
     width: 20px;
     border-radius: 4px;
 }
+
