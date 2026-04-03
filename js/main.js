@@ -111,7 +111,7 @@
         });
     })();
 
-    // Свайпы для бургер-меню (влево — открыть, вправо — закрыть)
+    // Свайпы для бургер-меню (влево — открыть, вправо — закрыть) с игнорированием слайдера
 (function() {
     const mobileMenu = document.getElementById('mobileMenu');
     const burger = document.getElementById('burgerBtn');
@@ -120,7 +120,19 @@
     let touchStartX = 0;
     let touchEndX = 0;
     let isTracking = false;
+    let isOnSlider = false;
     const minSwipeDistance = 50;
+    
+    function isElementInsideSlider(target) {
+        // Проверяем, находится ли целевой элемент внутри слайдера
+        const sliders = document.querySelectorAll('.sharing__slider-container, .swiper, .swiper-wrapper, .swiper-slide');
+        for (let slider of sliders) {
+            if (slider.contains(target)) {
+                return true;
+            }
+        }
+        return false;
+    }
     
     function openMenuSwipe() {
         if (!mobileMenu.classList.contains('open')) {
@@ -144,6 +156,8 @@
         touchStartX = e.touches[0].clientX;
         touchEndX = touchStartX;
         isTracking = true;
+        // Проверяем, начался ли тач на слайдере
+        isOnSlider = isElementInsideSlider(e.target);
     }, { passive: true });
     
     document.addEventListener('touchmove', function(e) {
@@ -154,6 +168,12 @@
     document.addEventListener('touchend', function(e) {
         if (!isTracking) return;
         isTracking = false;
+        
+        // Если свайп начался на слайдере — ничего не делаем
+        if (isOnSlider) {
+            isOnSlider = false;
+            return;
+        }
         
         const deltaX = touchEndX - touchStartX;
         
@@ -170,5 +190,6 @@
         
         touchStartX = 0;
         touchEndX = 0;
+        isOnSlider = false;
     }, { passive: false });
 })();
