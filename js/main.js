@@ -110,3 +110,65 @@
             });
         });
     })();
+
+    // Свайпы для бургер-меню (влево — открыть, вправо — закрыть)
+(function() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const burger = document.getElementById('burgerBtn');
+    const overlay = document.getElementById('menuOverlay');
+    
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let isTracking = false;
+    const minSwipeDistance = 50;
+    
+    function openMenuSwipe() {
+        if (!mobileMenu.classList.contains('open')) {
+            mobileMenu.classList.add('open');
+            overlay.classList.add('active');
+            burger.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+    
+    function closeMenuSwipe() {
+        if (mobileMenu.classList.contains('open')) {
+            mobileMenu.classList.remove('open');
+            overlay.classList.remove('active');
+            burger.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+    
+    document.addEventListener('touchstart', function(e) {
+        touchStartX = e.touches[0].clientX;
+        touchEndX = touchStartX;
+        isTracking = true;
+    }, { passive: true });
+    
+    document.addEventListener('touchmove', function(e) {
+        if (!isTracking) return;
+        touchEndX = e.touches[0].clientX;
+    }, { passive: true });
+    
+    document.addEventListener('touchend', function(e) {
+        if (!isTracking) return;
+        isTracking = false;
+        
+        const deltaX = touchEndX - touchStartX;
+        
+        if (Math.abs(deltaX) < minSwipeDistance) return;
+        
+        // Свайп влево (deltaX < 0) - открываем меню
+        if (deltaX < 0 && !mobileMenu.classList.contains('open')) {
+            openMenuSwipe();
+        }
+        // Свайп вправо (deltaX > 0) - закрываем меню
+        else if (deltaX > 0 && mobileMenu.classList.contains('open')) {
+            closeMenuSwipe();
+        }
+        
+        touchStartX = 0;
+        touchEndX = 0;
+    }, { passive: false });
+})();

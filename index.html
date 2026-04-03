@@ -1,105 +1,285 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/style.css">
     <title>Йога — творчество и философия жизни</title>
 </head>
+
 <body>
 
-<header class="header" id="mainHeader">
-    <div class="container header__container">
-        <a href="#" class="header__logo">йога • практика</a>
-        <nav class="header__nav">
-            <a href="#principles" class="header__link">Принципы</a>
-            <a href="#formats" class="header__link">Форматы</a>
-            <a href="#education" class="header__link">Образование</a>
-            <a href="#gallery" class="header__link">Галерея</a>
-            <a href="#video" class="header__link">Видео</a>
-            <a href="#contact" class="header__link">Контакты</a>
-        </nav>
-        <button class="burger-btn" id="burgerBtn" aria-label="Меню">
-            <span></span><span></span><span></span>
-        </button>
+    <header class="header" id="mainHeader">
+        <div class="container header__container">
+            <a href="#" class="header__logo">йога • практика</a>
+            <nav class="header__nav">
+                <a href="#principles" class="header__link">Принципы</a>
+                <a href="#formats" class="header__link">Форматы</a>
+                <a href="#education" class="header__link">Образование</a>
+                <a href="#gallery" class="header__link">Галерея</a>
+                <a href="#video" class="header__link">Видео</a>
+                <a href="#contact" class="header__link">Контакты</a>
+            </nav>
+            <button class="burger-btn" id="burgerBtn" aria-label="Меню">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+    <div class="header-placeholder" id="headerPlaceholder"></div>
+
+    <!-- Мобильное меню -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#principles" class="mobile-menu__link">Принципы</a>
+        <a href="#formats" class="mobile-menu__link">Форматы</a>
+        <a href="#education" class="mobile-menu__link">Образование</a>
+        <a href="#gallery" class="mobile-menu__link">Галерея</a>
+        <a href="#video" class="mobile-menu__link">Видео</a>
+        <a href="#contact" class="mobile-menu__link">Контакты</a>
     </div>
-</header>
-<div class="header-placeholder" id="headerPlaceholder"></div>
+    <div class="menu-overlay" id="menuOverlay"></div>
 
-<!-- Мобильное меню -->
-<div class="mobile-menu" id="mobileMenu">
-    <a href="#principles" class="mobile-menu__link">Принципы</a>
-    <a href="#formats" class="mobile-menu__link">Форматы</a>
-    <a href="#education" class="mobile-menu__link">Образование</a>
-    <a href="#gallery" class="mobile-menu__link">Галерея</a>
-    <a href="#video" class="mobile-menu__link">Видео</a>
-    <a href="#contact" class="mobile-menu__link">Контакты</a>
-</div>
-<div class="menu-overlay" id="menuOverlay"></div>
-
-<main>
-    <section class="hero">
-        <div class="container hero__container">
-            <div class="hero__content">
-                <h1 class="hero__title">Йога с Ками</h1>
-                <p class="hero__subtitle">Приглашаю вас на практику хатха йоги со мной, где тело становится здоровым, а ум — спокойным.</p>
-                <div class="hero__buttons">
-                    <a href="#video" class="button button--primary">Попробовать бесплатный урок</a>
-                    <a href="#formats" class="button button--secondary">Выбрать формат</a>
+    <main>
+        <section class="hero">
+            <div class="container hero__container">
+                <div class="hero__content">
+                    <h1 class="hero__title">Йога с Ками</h1>
+                    <p class="hero__subtitle">Приглашаю вас на практику хатха йоги со мной, где тело становится
+                        здоровым, а ум — спокойным.</p>
+                    <div class="hero__buttons">
+                        <a href="#video" class="button button--primary">Попробовать бесплатный урок</a>
+                        <a href="#formats" class="button button--secondary">Выбрать формат</a>
+                    </div>
+                </div>
+                <div class="hero__image">
+                    <img src="logo.jpg" alt="Йога на природе"
+                        onerror="this.src='https://placehold.co/600x800/e5dfd7/2a2a28?text=Yoga+Image'">
                 </div>
             </div>
-            <div class="hero__image">
-                <img src="logo.jpg" alt="Йога на природе" onerror="this.src='https://placehold.co/600x800/e5dfd7/2a2a28?text=Yoga+Image'">
+        </section>
+
+        <section id="principles" class="principles">
+            <div class="container">
+                <h2 class="section-title section-title--centered">Три принципа, которых я предерживаюсь</h2>
+                <p class="principles__sub">Осознанность, доступность и индивидуальный подход в каждой практике</p>
+                <div class="principles__grid">
+                    <article class="principle-card">
+                        <div class="principle-card__number">01</div>
+                        <h3 class="principle-card__title">Осознанность</h3>
+                        <p class="principle-card__text">Я веду сбалансированную практику, где статика асан сочетается с
+                            внутренней работой. Особое внимание уделяю раскрытию грудного отдела и тазобедренных
+                            суставов для здоровой осанки.</p>
+                    </article>
+                    <article class="principle-card">
+                        <div class="principle-card__number">02</div>
+                        <h3 class="principle-card__title">Доступность и прогресс</h3>
+                        <p class="principle-card__text">Практика подходит для любого уровня. Через четкие модификации
+                            (упрощение и усложнение) я помогаю двигаться безопасно и чувствовать прогресс.</p>
+                    </article>
+                    <article class="principle-card">
+                        <div class="principle-card__number">03</div>
+                        <h3 class="principle-card__title">Индивидуальный подход</h3>
+                        <p class="principle-card__text">Для меня важен открытый диалог. Я внимательна к обратной связи и
+                            выстраиваю бережное сопровождение для каждого, включая работу в группе.</p>
+                    </article>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="principles" class="principles">
-        <div class="container">
-            <h2 class="section-title section-title--centered">Три принципа, которых я предерживаюсь</h2>
-            <p class="principles__sub">Осознанность, доступность и индивидуальный подход в каждой практике</p>
-            <div class="principles__grid">
-                <article class="principle-card"><div class="principle-card__number">01</div><h3 class="principle-card__title">Осознанность</h3><p class="principle-card__text">Я веду сбалансированную практику, где статика асан сочетается с внутренней работой. Особое внимание уделяю раскрытию грудного отдела и тазобедренных суставов для здоровой осанки.</p></article>
-                <article class="principle-card"><div class="principle-card__number">02</div><h3 class="principle-card__title">Доступность и прогресс</h3><p class="principle-card__text">Практика подходит для любого уровня. Через четкие модификации (упрощение и усложнение) я помогаю двигаться безопасно и чувствовать прогресс.</p></article>
-                <article class="principle-card"><div class="principle-card__number">03</div><h3 class="principle-card__title">Индивидуальный подход</h3><p class="principle-card__text">Для меня важен открытый диалог. Я внимательна к обратной связи и выстраиваю бережное сопровождение для каждого, включая работу в группе.</p></article>
+        <section id="formats" class="formats">
+            <div class="container">
+                <h2 class="section-title section-title--centered">Выберите свой формат</h2>
+                <div class="formats__grid">
+                    <div class="format-card">
+                        <div class="format-card__emoji"><img src="/images/mail.png" alt="online yoga"
+                                style="width:48px"></div>
+                        <h3 class="format-card__title">Online yoga club</h3>
+                        <p class="format-card__text">Закрытое пространство для регулярной практики дома. Удобное
+                            расписание, записи, поддержка.</p><a href="#online" class="format-card__link">Узнать о клубе
+                            →</a>
+                    </div>
+                    <div class="format-card">
+                        <div class="format-card__emoji"><img src="/images/group.png" alt="" style="width:48px"></div>
+                        <h3 class="format-card__title">Групповые классы в студиях</h3>
+                        <p class="format-card__text">Живые практики в Санкт-Петербурге.</p>
+                        <ul class="format-card__studio-list">
+                            <li class="format-card__studio-item"><a href="https://core-studio.ru/"
+                                    class="format-card__studio-link">Студия «Core», м. Восстания — расписание</a></li>
+                            <li class="format-card__studio-item"><a href="https://devi.space"
+                                    class="format-card__studio-link">Студия «Devi», м. Васильеостровская —
+                                    расписание</a></li>
+                            <li class="format-card__studio-item"><a href="https://yoga7studio.ru/"
+                                    class="format-card__studio-link">Студия «Yoga7studio», Петровская Коса —
+                                    расписание</a></li>
+                        </ul>
+                    </div>
+                    <div class="format-card">
+                        <div class="format-card__emoji"><img src="/images/indiv.png" alt="" style="width:48px"></div>
+                        <h3 class="format-card__title">Индивидуальное занятие</h3>
+                        <p class="format-card__text">Персональная практика под ваш запрос. Углубленное изучение асан,
+                            работа с травмами.</p><a href="#indiv" class="format-card__link">Записаться →</a>
+                    </div>
+                    <div class="format-card">
+                        <div class="format-card__emoji"><img src="/images/retr.png" alt="" style="width:48px"></div>
+                        <h3 class="format-card__title">Ретриты под запрос</h3>
+                        <p class="format-card__text">Путешествие вглубь себя. Авторские выездные программы. Напишите мне
+                            — и мы создадим ретрит вместе.</p><a href="#" class="format-card__link">Хочу ретрит →</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="formats" class="formats">
-        <div class="container">
-            <h2 class="section-title section-title--centered">Выберите свой формат</h2>
-            <div class="formats__grid">
-                <div class="format-card"><div class="format-card__emoji"><img src="/images/mail.png" alt="online yoga" style="width:48px"></div><h3 class="format-card__title">Online yoga club</h3><p class="format-card__text">Закрытое пространство для регулярной практики дома. Удобное расписание, записи, поддержка.</p><a href="#online" class="format-card__link">Узнать о клубе →</a></div>
-                <div class="format-card"><div class="format-card__emoji"><img src="/images/group.png" alt="" style="width:48px"></div><h3 class="format-card__title">Групповые классы в студиях</h3><p class="format-card__text">Живые практики в Санкт-Петербурге.</p><ul class="format-card__studio-list"><li class="format-card__studio-item"><a href="https://core-studio.ru/" class="format-card__studio-link">Студия «Core», м. Восстания — расписание</a></li><li class="format-card__studio-item"><a href="https://devi.space" class="format-card__studio-link">Студия «Devi», м. Васильеостровская — расписание</a></li><li class="format-card__studio-item"><a href="https://yoga7studio.ru/" class="format-card__studio-link">Студия «Yoga7studio», Петровская Коса — расписание</a></li></ul></div>
-                <div class="format-card"><div class="format-card__emoji"><img src="/images/indiv.png" alt="" style="width:48px"></div><h3 class="format-card__title">Индивидуальное занятие</h3><p class="format-card__text">Персональная практика под ваш запрос. Углубленное изучение асан, работа с травмами.</p><a href="#indiv" class="format-card__link">Записаться →</a></div>
-                <div class="format-card"><div class="format-card__emoji"><img src="/images/retr.png" alt="" style="width:48px"></div><h3 class="format-card__title">Ретриты под запрос</h3><p class="format-card__text">Путешествие вглубь себя. Авторские выездные программы. Напишите мне — и мы создадим ретрит вместе.</p><a href="#" class="format-card__link">Хочу ретрит →</a></div>
+        <section id="education" class="education">
+            <div class="container">
+                <h2 class="section-title">Мой путь в йоге. Постоянное обучение и живая традиция</h2>
+                <p class="education__intro">Для меня йога — бесконечный путь изучения. Я учусь у лучших учителей России
+                    и Индии, чтобы делать практики глубже и безопаснее.</p>
+                <div class="education__grid">
+                    <div class="edu-item">
+                        <div class="edu-item__year">2026 г.</div>
+                        <div class="edu-item__desc">Претитчерс «Личная практика», школа «Чатуранга»</div>
+                        <div class="edu-item__place">Дмитрий Дёмин, Глеб Мазаев</div>
+                    </div>
+                    <div class="edu-item">
+                        <div class="edu-item__year">2025–2029 гг.</div>
+                        <div class="edu-item__desc">ИМВР «Йога-терапия для женского здоровья»</div>
+                    </div>
+                    <div class="edu-item">
+                        <div class="edu-item__year">2025 г.</div>
+                        <div class="edu-item__desc">Расширенный курс «Аштанга йога…» с Натальей Сениной</div>
+                        <div class="edu-item__place">Material Moscow</div>
+                    </div>
+                    <div class="edu-item">
+                        <div class="edu-item__year">2025, 2026</div>
+                        <div class="edu-item__desc">KPJAYI, Индия — Институт Аштанга йоги им. Шри Паттабхи Джойса</div>
+                    </div>
+                    <div class="edu-item">
+                        <div class="edu-item__year">2024 г.</div>
+                        <div class="edu-item__desc">Тичерс курс Hot yoga 36</div>
+                    </div>
+                    <div class="edu-item">
+                        <div class="edu-item__year">2024 г.</div>
+                        <div class="edu-item__desc">Курс «Пранаяма» под руководством Максима Хорохорина</div>
+                    </div>
+                    <div class="edu-item edu-item--full">
+                        <div class="edu-item__year">семинары</div>
+                        <div class="edu-item__desc">Посещение семинаров Ильи Журавлева, Юрия Кочеткова и др.</div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="education" class="education">
-        <div class="container"><h2 class="section-title">Мой путь в йоге. Постоянное обучение и живая традиция</h2><p class="education__intro">Для меня йога — бесконечный путь изучения. Я учусь у лучших учителей России и Индии, чтобы делать практики глубже и безопаснее.</p>
-        <div class="education__grid"><div class="edu-item"><div class="edu-item__year">2026 г.</div><div class="edu-item__desc">Претитчерс «Личная практика», школа «Чатуранга»</div><div class="edu-item__place">Дмитрий Дёмин, Глеб Мазаев</div></div><div class="edu-item"><div class="edu-item__year">2025–2029 гг.</div><div class="edu-item__desc">ИМВР «Йога-терапия для женского здоровья»</div></div><div class="edu-item"><div class="edu-item__year">2025 г.</div><div class="edu-item__desc">Расширенный курс «Аштанга йога…» с Натальей Сениной</div><div class="edu-item__place">Material Moscow</div></div><div class="edu-item"><div class="edu-item__year">2025, 2026</div><div class="edu-item__desc">KPJAYI, Индия — Институт Аштанга йоги им. Шри Паттабхи Джойса</div></div><div class="edu-item"><div class="edu-item__year">2024 г.</div><div class="edu-item__desc">Тичерс курс Hot yoga 36</div></div><div class="edu-item"><div class="edu-item__year">2024 г.</div><div class="edu-item__desc">Курс «Пранаяма» под руководством Максима Хорохорина</div></div><div class="edu-item edu-item--full"><div class="edu-item__year">семинары</div><div class="edu-item__desc">Посещение семинаров Ильи Журавлева, Юрия Кочеткова и др.</div></div></div></div>
-    </section>
+        <section id="online" class="sharing">
+            <div class="container">
+                <div class="sharing__inner">
+                    <div class="sharing__heading">
+                        <h2 class="sharing__title title">Online yoga club</h2>
+                        <p class="sharing__subtitle subtitle">Закрытое пространство для регулярной практики дома.
+                            Удобное расписание, записи, поддержка.</p>
+                        <h3 class="sharing__h3">Расписание:</h3>
+                        <p class="sharing__text">Среда, Воскресенье в 8:30 по Мск.<br>Продолжительность занятия от 30 до
+                            50 мин.<br>Записи сохраняются.<br><br>Старт нового потока 1 апреля, присоединиться можно до
+                            7 апреля.<br>Стоимость участия: 3500 рублей</p>
+                        <div class="on__button"><a href="https://t.me/ohhkamila"
+                                class="button online__button">Подробнее</a></div>
+                    </div>
+                    <div class="sharing__slider-container swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><a href="/images/on1.png" data-fancybox="gallery"><img
+                                        src="/images/on1.png" alt=""></a></div>
+                            <div class="swiper-slide"><a href="/images/on2.png" data-fancybox="gallery"><img
+                                        src="/images/on2.png" alt=""></a></div>
+                            <div class="swiper-slide"><a href="/images/on3.png" data-fancybox="gallery"><img
+                                        src="/images/on3.png" alt=""></a></div>
+                            <div class="swiper-slide"><a href="/images/on4.png" data-fancybox="gallery"><img
+                                        src="/images/on4.png" alt=""></a></div>
+                            <div class="swiper-slide"><a href="/images/on5.png" data-fancybox="gallery"><img
+                                        src="/images/on5.png" alt=""></a></div>
+                            <div class="swiper-slide"><a href="/images/on6.png" data-fancybox="gallery"><img
+                                        src="/images/on6.png" alt=""></a></div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section id="online" class="sharing"><div class="container"><div class="sharing__inner"><div class="sharing__heading"><h2 class="sharing__title title">Online yoga club</h2><p class="sharing__subtitle subtitle">Закрытое пространство для регулярной практики дома. Удобное расписание, записи, поддержка.</p><h3 class="sharing__h3">Расписание:</h3><p class="sharing__text">Среда, Воскресенье в 8:30 по Мск.<br>Продолжительность занятия от 30 до 50 мин.<br>Записи сохраняются.<br><br>Старт нового потока 1 апреля, присоединиться можно до 7 апреля.<br>Стоимость участия: 3500 рублей</p><div class="on__button"><a href="https://t.me/ohhkamila" class="button online__button">Подробнее</a></div></div><div class="sharing__slider-container swiper"><div class="swiper-wrapper"><div class="swiper-slide"><a href="/images/on1.png" data-fancybox="gallery"><img src="/images/on1.png" alt=""></a></div><div class="swiper-slide"><a href="/images/on2.png" data-fancybox="gallery"><img src="/images/on2.png" alt=""></a></div><div class="swiper-slide"><a href="/images/on3.png" data-fancybox="gallery"><img src="/images/on3.png" alt=""></a></div><div class="swiper-slide"><a href="/images/on4.png" data-fancybox="gallery"><img src="/images/on4.png" alt=""></a></div><div class="swiper-slide"><a href="/images/on5.png" data-fancybox="gallery"><img src="/images/on5.png" alt=""></a></div><div class="swiper-slide"><a href="/images/on6.png" data-fancybox="gallery"><img src="/images/on6.png" alt=""></a></div></div><div class="swiper-pagination"></div><div class="swiper-button-prev"></div><div class="swiper-button-next"></div></div></div></div></section>
+        <section id="indiv" class="sharing">
+            <div class="container">
+                <div class="sharing__inner">
+                    <div class="sharing__heading"><br><br><br><br>
+                        <h2 class="sharing__title title">Индивидуальная практика</h2>
+                        <p class="sharing__subtitle subtitle">Я работаю индивидуально с учетом ваших пожеланий,
+                            подготовки и физических особенностей - это основа безопасной и результативной практики. Буду
+                            рядом, чтобы познакомить вас с разными направлениями йоги и медитации.</p>
+                        <h3 class="sharing__h3">Стоимость</h3>
+                        <p class="sharing__text">Онлайн занятие 1 час - 2000 рублей <br><br>Офлайн занятие 1 час - 3000
+                            рублей<br> (в стоимость не входит возможная аренда помещения)<br></p>
+                        <div class="on__button"><a href="https://t.me/ohhkamila"
+                                class="button online__button">Подробнее</a></div>
+                    </div>
+                    <div class="sharing__slider-container swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><a href="/images/sharre1.jpg" data-fancybox="gallery2"><img
+                                        src="/images/sharre1.jpg" alt=""></a></div>
+                            <div class="swiper-slide"><a href="/images/sharre2.jpg" data-fancybox="gallery2"><img
+                                        src="/images/sharre2.jpg" alt=""></a></div>
+                            <div class="swiper-slide"><a href="/images/sharre3.jpg" data-fancybox="gallery2"><img
+                                        src="/images/sharre3.jpg" alt=""></a></div>
+                            <div class="swiper-slide"><a href="/images/sharre4.jpg" data-fancybox="gallery2"><img
+                                        src="/images/sharre4.jpg" alt=""></a></div>
+                            <div class="swiper-slide"><a href="/images/sharre5.jpg" data-fancybox="gallery2"><img
+                                        src="/images/sharre5.jpg" alt=""></a></div>
+                            <div class="swiper-slide"><a href="/images/sharre6.jpg" data-fancybox="gallery2"><img
+                                        src="/images/sharre6.jpg" alt=""></a></div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section id="indiv" class="sharing"><div class="container"><div class="sharing__inner"><div class="sharing__heading"><h2 class="sharing__title title">Индивидуальная практика</h2><p class="sharing__subtitle subtitle">Я работаю индивидуально с учетом ваших пожеланий, подготовки и физических особенностей - это основа безопасной и результативной практики. Буду рядом, чтобы познакомить вас с разными направлениями йоги и медитации.</p><h3 class="sharing__h3">Стоимость</h3><p class="sharing__text">Онлайн занятие 1 час - 2000 рублей <br><br>Офлайн занятие 1 час - 3000 рублей<br> (в стоимость не входит возможная аренда помещения)<br></p><div class="on__button"><a href="https://t.me/ohhkamila" class="button online__button">Подробнее</a></div></div><div class="sharing__slider-container swiper"><div class="swiper-wrapper"><div class="swiper-slide"><a href="/images/sharre1.jpg" data-fancybox="gallery2"><img src="/images/sharre1.jpg" alt=""></a></div><div class="swiper-slide"><a href="/images/sharre2.jpg" data-fancybox="gallery2"><img src="/images/sharre2.jpg" alt=""></a></div><div class="swiper-slide"><a href="/images/sharre3.jpg" data-fancybox="gallery2"><img src="/images/sharre3.jpg" alt=""></a></div><div class="swiper-slide"><a href="/images/sharre4.jpg" data-fancybox="gallery2"><img src="/images/sharre4.jpg" alt=""></a></div><div class="swiper-slide"><a href="/images/sharre5.jpg" data-fancybox="gallery2"><img src="/images/sharre5.jpg" alt=""></a></div><div class="swiper-slide"><a href="/images/sharre6.jpg" data-fancybox="gallery2"><img src="/images/sharre6.jpg" alt=""></a></div></div><div class="swiper-pagination"></div><div class="swiper-button-prev"></div><div class="swiper-button-next"></div></div></div></div></section>
+        <section id="video" class="video-teaser">
+            <div class="container video-teaser__container">
+                <h2 class="video-teaser__title">Попробуйте видеоуроки со мной уже сейчас</h2>
+                <p class="video-teaser__text">Короткая практика для знакомства. Всего 20 минут, чтобы почувствовать тело
+                    и успокоить мысли.</p><a href="#" class="video-teaser__link"><img
+                        src="https://placehold.co/640x360/b7aa99/ffffff?text=YouTube+видео" alt="видео йоги"
+                        class="video-teaser__image"></a>
+            </div>
+        </section>
 
-    <section id="video" class="video-teaser"><div class="container video-teaser__container"><h2 class="video-teaser__title">Попробуйте видеоуроки со мной уже сейчас</h2><p class="video-teaser__text">Короткая практика для знакомства. Всего 20 минут, чтобы почувствовать тело и успокоить мысли.</p><a href="#" class="video-teaser__link"><img src="https://placehold.co/640x360/b7aa99/ffffff?text=YouTube+видео" alt="видео йоги" class="video-teaser__image"></a></div></section>
+        <footer id="contact" class="footer-cta">
+            <div class="container">
+                <h2 class="footer-cta__title">Начните свой путь к балансу и осознанности</h2>
+                <p class="footer-cta__text">Остались вопросы? Напишите мне, и мы подберём тот формат, который подходит
+                    именно вам.</p>
+                <div class="footer-cta__socials"><a href="https://t.me/ohhkamila" class="footer-cta__social-link"><img
+                            src="images/tg.png" alt="telegram"></a><a href="#" class="footer-cta__social-link"><img
+                            src="images/max.png" alt="max"></a><a
+                        href="https://www.instagram.com/ohhchieko?igsh=MXZ5cmNwODF3MWd1cQ=="
+                        class="footer-cta__social-link"><img src="images/instagram.png" alt="instagram"></a></div><a
+                    href="https://t.me/ohhkamila" class="button footer-cta__button">Написать в Telegram</a>
+                <p style="margin-top: 60px; font-size: 14px; color: #9b9a92;">© йога — творчество и философия, 2026</p>
+            </div>
+        </footer>
+    </main>
 
-    <footer id="contact" class="footer-cta"><div class="container"><h2 class="footer-cta__title">Начните свой путь к балансу и осознанности</h2><p class="footer-cta__text">Остались вопросы? Напишите мне, и мы подберём тот формат, который подходит именно вам.</p><div class="footer-cta__socials"><a href="https://t.me/ohhkamila" class="footer-cta__social-link"><img src="images/tg.png" alt="telegram"></a><a href="#" class="footer-cta__social-link"><img src="images/max.png" alt="max"></a><a href="https://www.instagram.com/ohhchieko?igsh=MXZ5cmNwODF3MWd1cQ==" class="footer-cta__social-link"><img src="images/instagram.png" alt="instagram"></a></div><a href="https://t.me/ohhkamila" class="button footer-cta__button">Написать в Telegram</a><p style="margin-top: 60px; font-size: 14px; color: #9b9a92;">© йога — творчество и философия, 2026</p></div></footer>
-</main>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="/js/main.js"></script>
 </body>
+
 </html>

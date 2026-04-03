@@ -120,13 +120,11 @@
             font-weight: 450;
             letter-spacing: 0.3px;
             color: #2a2a28;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.2s;
             z-index: 1002;
             position: relative;
         }
         .header__logo:hover {
-            border-bottom-color: #9b9b7a;
+            color: #666655;
         }
 
         /* Десктопная навигация */
@@ -446,7 +444,7 @@
             max-width: 800px;
         }
         .sharing__title {
-            margin-top: 34px;
+            margin-top: 60px;
         }
         .sharing__h3 {
             margin: 24px 0;
@@ -458,7 +456,8 @@
         }
         @media (max-width: 800px) {
             .sharing__slider-container.swiper { width: 100%; }
-            .sharing__subtitle { padding: 0 20px; }
+            .sharing__subtitle { padding: 0 20px;
+            margin-top: 50px; }
             .sharing__text { padding: 0 20px; }
         }
         .swiper-slide a {
