@@ -506,7 +506,14 @@
             display: inline-block;
             border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 25px 35px -15px #b7af9f;
+            box-shadow: 0 25px 35px -15px #272011;
+            transition: box-shadow 0.2s;
+        }
+        .video-teaser__link:hover {
+            display: inline-block;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 25px 35px -8px #000000;
             transition: box-shadow 0.2s;
         }
         .video-teaser__image {
